@@ -1,5 +1,22 @@
 #GIT
 
+# Bootstrap
+app/bootstrap*
+
+# Symfony directories
+vendor/*
+*/logs/*
+*/cache/*
+web/uploads/*
+web/bundles/*
+
+# Configuration files
+app/config/parameters.ini
+app/config/parameters.yml
+
+# Composer
+composer.phar
+
 # netbeans
 nbproject/project.xml
 nbproject/project.properties
@@ -16,3 +33,5 @@ nb-configuration.xml
 !.gitignore
 !.htaccess
 *~
+
+
