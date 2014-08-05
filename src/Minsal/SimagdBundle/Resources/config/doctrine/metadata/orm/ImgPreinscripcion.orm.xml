@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="ImgPreinscripcion" table="img_preinscripcion">
+    <indexes>
+      <index name="IDX_7FCEF03FC02E5491" columns="id_modalidad_imagenologia"/>
+      <index name="IDX_7FCEF03F7DFA12F6" columns="id_establecimiento"/>
+      <index name="IDX_7FCEF03F50AC6C0" columns="id_establecimiento_referido"/>
+      <index name="IDX_7FCEF03F9C29FA00" columns="id_establecimiento_diagnosticante"/>
+      <index name="IDX_7FCEF03F701624C4" columns="id_expediente"/>
+      <index name="IDX_7FCEF03F44A2C069" columns="id_area_atencion"/>
+      <index name="IDX_7FCEF03F695EA351" columns="id_atencion"/>
+      <index name="IDX_7FCEF03F890253C7" columns="id_empleado"/>
+    </indexes>
+    <id name="id" type="integer" column="id">
+      <generator strategy="SEQUENCE"/>
+    </id>
+    <field name="datosClinicos" type="string" column="datos_clinicos" nullable="false"/>
+    <field name="consultaPor" type="string" column="consulta_por" nullable="true"/>
+    <field name="estadoClinico" type="string" column="estado_clinico" nullable="true"/>
+    <field name="hipotesisDiagnostica" type="string" column="hipotesis_diagnostica" nullable="false"/>
+    <field name="investigar" type="string" column="investigar" nullable="false"/>
+    <field name="antecedentesClinicosRelevantes" type="string" column="antecedentes_clinicos_relevantes" nullable="true"/>
+    <field name="justificacionMedicaPreinscripcion" type="string" column="justificacion_medica_preinscripcion" nullable="false"/>
+    <field name="fechaCreacionPreinscripcion" type="datetime" column="fecha_creacion_preinscripcion" nullable="true"/>
+    <field name="referirPaciente" type="boolean" column="referir_paciente" nullable="true"/>
+    <field name="justificacionReferencia" type="string" column="justificacion_referencia" length="100" nullable="true"/>
+    <field name="fechaProximaConsulta" type="date" column="fecha_proxima_consulta" nullable="true"/>
+    <field name="necesitaCita" type="boolean" column="necesita_cita" nullable="true"/>
+    <field name="requiereDiagnostico" type="boolean" column="requiere_diagnostico" nullable="true"/>
+    <field name="justificacionDiagnostico" type="string" column="justificacion_diagnostico" length="100" nullable="true"/>
+    <field name="pacienteAmbulatorio" type="boolean" column="paciente_ambulatorio" nullable="true"/>
+    <field name="numeroSala" type="integer" column="numero_sala" nullable="true"/>
+    <field name="numeroCama" type="integer" column="numero_cama" nullable="true"/>
+    <field name="pacienteDesconocido" type="boolean" column="paciente_desconocido" nullable="true"/>
+    <field name="pesoActualLb" type="decimal" column="peso_actual_lb" precision="6" scale="2" nullable="true"/>
+    <field name="pesoActualKg" type="decimal" column="peso_actual_kg" precision="6" scale="2" nullable="true"/>
+    <field name="tallaPaciente" type="decimal" column="talla_paciente" precision="6" scale="2" nullable="true"/>
+    <many-to-one field="idAreaAtencion" target-entity="CtlAreaAtencion">
+      <join-columns>
+        <join-column name="id_area_atencion" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idAtencion" target-entity="CtlAtencion">
+      <join-columns>
+        <join-column name="id_atencion" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idEmpleado" target-entity="MntEmpleado">
+      <join-columns>
+        <join-column name="id_empleado" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idExpediente" target-entity="MntExpediente">
+      <join-columns>
+        <join-column name="id_expediente" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idEstablecimientoDiagnosticante" target-entity="CtlEstablecimiento">
+      <join-columns>
+        <join-column name="id_establecimiento_diagnosticante" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idEstablecimiento" target-entity="CtlEstablecimiento">
+      <join-columns>
+        <join-column name="id_establecimiento" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idEstablecimientoReferido" target-entity="CtlEstablecimiento">
+      <join-columns>
+        <join-column name="id_establecimiento_referido" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idModalidadImagenologia" target-entity="CtlModalidadImagenologia">
+      <join-columns>
+        <join-column name="id_modalidad_imagenologia" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

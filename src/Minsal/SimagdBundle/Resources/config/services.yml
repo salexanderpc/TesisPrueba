@@ -1,0 +1,6 @@
+services:
+    minsal_simagd.admin.ctl_pacs_establecimiento:
+        class: Minsal\SimagdBundle\Admin\CtlPacsEstablecimientoAdmin
+        arguments: [~, Minsal\SimagdBundle\Entity\CtlPacsEstablecimiento, MinsalSimagdBundle:CtlPacsEstablecimientoAdmin]
+        tags:
+            - {name: sonata.admin,event: prePersist ,manager_type: orm, group: admin, label: Agregar PACS}

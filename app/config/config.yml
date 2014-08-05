@@ -10,6 +10,7 @@ imports:
     - { resource: bundles/sonata_cache.yml }
     - { resource: bundles/sonata_formatter.yml }
     - { resource: bundles/fos_user.yml }
+    - { resource: @MinsalSimagdBundle/Resources/config/services.yml }
 
 framework:
     #esi:             ~

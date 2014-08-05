@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="ImgDiagnostico" table="img_diagnostico">
+    <indexes>
+      <index name="IDX_15C1D2C618971421" columns="id_lectura"/>
+      <index name="IDX_15C1D2C622BF8FB7" columns="id_estado_diagnostico"/>
+      <index name="IDX_15C1D2C6890253C7" columns="id_empleado"/>
+    </indexes>
+    <id name="id" type="integer" column="id">
+      <generator strategy="SEQUENCE"/>
+    </id>
+    <field name="transcripcion" type="text" column="transcripcion" nullable="true"/>
+    <field name="hallazgos" type="string" column="hallazgos" length="300" nullable="true"/>
+    <field name="fechaDiagnosticoTranscrito" type="datetime" column="fecha_diagnostico_transcrito" nullable="true"/>
+    <field name="fechaDiagnosticoCorregido" type="datetime" column="fecha_diagnostico_corregido" nullable="true"/>
+    <field name="fechaDiagnosticoAprobado" type="datetime" column="fecha_diagnostico_aprobado" nullable="true"/>
+    <field name="erroresTranscripcion" type="string" column="errores_transcripcion" length="300" nullable="true"/>
+    <field name="incidenciasDiagnostico" type="string" column="incidencias_diagnostico" length="100" nullable="true"/>
+    <field name="observacionesDiagnostico" type="string" column="observaciones_diagnostico" length="100" nullable="true"/>
+    <many-to-one field="idEmpleado" target-entity="MntEmpleado">
+      <join-columns>
+        <join-column name="id_empleado" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idEstadoDiagnostico" target-entity="CtlEstadoDiagnostico">
+      <join-columns>
+        <join-column name="id_estado_diagnostico" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idLectura" target-entity="ImgLectura">
+      <join-columns>
+        <join-column name="id_lectura" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

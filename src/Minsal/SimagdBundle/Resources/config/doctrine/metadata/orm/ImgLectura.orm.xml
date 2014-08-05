@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="ImgLectura" table="img_lectura">
+    <indexes>
+      <index name="IDX_8B65F9B96196B359" columns="id_estudio"/>
+      <index name="IDX_8B65F9B9D93DAF86" columns="id_estado_lectura"/>
+      <index name="IDX_8B65F9B9D426DB54" columns="id_tipo_resultado"/>
+      <index name="IDX_8B65F9B97DFA12F6" columns="id_establecimiento"/>
+      <index name="IDX_8B65F9B9890253C7" columns="id_empleado"/>
+    </indexes>
+    <id name="id" type="integer" column="id">
+      <generator strategy="SEQUENCE"/>
+    </id>
+    <field name="correlativoLectura" type="string" column="correlativo_lectura" nullable="true"/>
+    <field name="fechaLectura" type="datetime" column="fecha_lectura" nullable="true"/>
+    <field name="lecturaRemota" type="boolean" column="lectura_remota" nullable="true"/>
+    <field name="indicaciones" type="string" column="indicaciones" length="100" nullable="true"/>
+    <many-to-one field="idEmpleado" target-entity="MntEmpleado">
+      <join-columns>
+        <join-column name="id_empleado" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idEstablecimiento" target-entity="CtlEstablecimiento">
+      <join-columns>
+        <join-column name="id_establecimiento" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idTipoResultado" target-entity="CtlTipoResultado">
+      <join-columns>
+        <join-column name="id_tipo_resultado" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idEstadoLectura" target-entity="CtlEstadoLectura">
+      <join-columns>
+        <join-column name="id_estado_lectura" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idEstudio" target-entity="ImgEstudioPaciente">
+      <join-columns>
+        <join-column name="id_estudio" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>
