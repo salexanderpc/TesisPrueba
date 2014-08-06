@@ -12,4 +12,17 @@ use Doctrine\ORM\EntityRepository;
  */
 class CtlPacsEstablecimientoRepository extends EntityRepository
 {
+    public function obtenerEstablecimientos() {
+
+        return $this->getEntityManager()
+                        ->createQuery('select nombre'
+                                . 'from ctl_establecimiento'
+                                . 'where id_tipo_establecimiento'
+                                . '= 1')->getResult();
+                /*
+                        ->createQueryBuilder()
+                        ->select('e')
+                        ->from('MinsalSiapsBundle:CtlEstablecimiento', 'e')
+                        ->where('e.configurado = true');*/
+    }
 }

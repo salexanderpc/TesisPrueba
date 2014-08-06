@@ -7,6 +7,7 @@ use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
+use Doctrine\ORM\EntityRepository;
 
 class CtlPacsEstablecimientoAdmin extends Admin {
 
@@ -56,14 +57,23 @@ class CtlPacsEstablecimientoAdmin extends Admin {
         $formMapper
                 ->add('id')
                 ->add('idEstablecimiento', 'entity', array('label' => 'establecimiento',
-                    'class' => 'MinsalSimagdBundle:CtlPacsEstablecimiento',
+                    'class' => 'MinsalSimagdBundle:CtlEstablecimiento',
+                    'property' => 'nombre',
                     'empty_value'=>'Seleccione la región',
-                   /* 'query_builder' => function(EntityRepository $repositorio) {
-                        $ruta_accion = explode('/', $this->getRequest()->getUri());
-                        $accion = array_pop($ruta_accion);
-                        $valor = array_pop($ruta_accion);
-                        return $repositorio->obtenerEstablecimientosCoexion($accion, $valor);
-                    }*/))
+                    'query_builder' => function(EntityRepository $er) {
+                    return $er->createQuery(
+    'SELECT nombre
+       FROM MinsalSimagdBundle:CtlEstablecimiento p
+      WHERE p.idtipoestablecimiento = :tipo
+   ORDER BY p.nombre ASC'
+)->setParameter('tipo', '1')->getResult() ;}
+                    ))
+                    /*'query_builder' => function(EntityRepository $repositorio) {
+                        //$ruta_accion = explode('/', $this->getRequest()->getUri());
+                        //$accion = array_pop($ruta_accion);
+                        //$valor = 1;
+                        return $repositorio->obtenerEstablecimientos();
+                    }))*/
                 ->add('nombrePacs')
                 ->add('urlPacs')
                 ->add('usuarioPacs')

@@ -5,7 +5,7 @@ namespace Minsal\SimagdBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * CtlPacsEstablecimiento
+ * Minsal\SimagdBundle\Entity\CtlPacsEstablecimiento
  *
  * @ORM\Table(name="ctl_pacs_establecimiento", indexes={@ORM\Index(name="IDX_3DFC3DD97DFA12F6", columns={"id_establecimiento"})})
  * @ORM\Entity(repositoryClass="Minsal\SimagdBundle\Entity\CtlPacsEstablecimientoRepository")

@@ -1,6 +1,18 @@
 services:
-    minsal_simagd.admin.ctl_pacs_establecimiento:
+    sonata.admin.ctl_pacs_establecimiento:
         class: Minsal\SimagdBundle\Admin\CtlPacsEstablecimientoAdmin
         arguments: [~, Minsal\SimagdBundle\Entity\CtlPacsEstablecimiento, MinsalSimagdBundle:CtlPacsEstablecimientoAdmin]
         tags:
-            - {name: sonata.admin,event: prePersist ,manager_type: orm, group: admin, label: Agregar PACS}
+            - {name: sonata.admin,event: prePersist ,manager_type: orm, group: admin, label: PACS}
+
+    sonata.admin.ctl_estado_procedimiento_realizado:
+        class: Minsal\SimagdBundle\Admin\CtlEstadoProcedimientoRealizadoAdmin
+        arguments: [~, Minsal\SimagdBundle\Entity\CtlEstadoProcedimientoRealizado, MinsalSimagdBundle:CtlEstadoProcedimientoRealizadoAdmin]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: admin, label: Estado Procedimiento Relalizado}
+
+    sonata.admin.ctl_modalidad_imagenologia:
+        class: Minsal\SimagdBundle\Admin\CtlModalidadImagenologiaAdmin
+        arguments: [~, Minsal\SimagdBundle\Entity\CtlModalidadImagenologia, MinsalSimagdBundle:CtlModalidadImagenologiaAdmin]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: admin, label: CtlModalidadImagenologia}
