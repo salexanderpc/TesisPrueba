@@ -16,3 +16,15 @@ services:
         arguments: [~, Minsal\SimagdBundle\Entity\CtlModalidadImagenologia, MinsalSimagdBundle:CtlModalidadImagenologiaAdmin]
         tags:
             - {name: sonata.admin, manager_type: orm, group: admin, label: CtlModalidadImagenologia}
+
+    sonata.admin.ctl_examen_imagenologia:
+        class: Minsal\SimagdBundle\Admin\CtlExamenImagenologiaAdmin
+        arguments: [~, Minsal\SimagdBundle\Entity\CtlExamenImagenologia, MinsalSimagdBundle:CtlExamenImagenologiaAdmin]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: admin, label: Ctl Examenes}
+
+    sonata.admin.img_preinscripcion:
+        class: Minsal\SimagdBundle\Admin\ImgPreinscripcionAdmin
+        arguments: [~, Minsal\SimagdBundle\Entity\ImgPreinscripcion, MinsalSimagdBundle:ImgPreinscripcionAdmin]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: admin, label: ImgPreinscripcion}

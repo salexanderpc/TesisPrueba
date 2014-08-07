@@ -10,6 +10,8 @@ use Sonata\AdminBundle\Show\ShowMapper;
 
 class CtlEstadoProcedimientoRealizadoAdmin extends Admin
 {
+     //public $supportsPreviewMode = true;
+    
     /**
      * @param DatagridMapper $datagridMapper
      */
@@ -17,7 +19,9 @@ class CtlEstadoProcedimientoRealizadoAdmin extends Admin
     {
         $datagridMapper
            // ->add('id')
+           
             ->add('nombreEstado')
+          
         ;
     }
 
@@ -59,6 +63,18 @@ class CtlEstadoProcedimientoRealizadoAdmin extends Admin
             ->add('id')
             ->add('nombreEstado')
         ;
+    }
+    
+     public function getTemplate($name)
+    {
+        switch ($name) {
+            case 'edit':
+                return 'MinsalSimagdBundle:Default:index.html.twig';
+                break;
+            default:
+                return parent::getTemplate($name);
+                break;
+        }
     }
     
     
