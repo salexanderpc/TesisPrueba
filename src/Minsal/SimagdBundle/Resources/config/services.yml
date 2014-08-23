@@ -27,4 +27,4 @@ services:
         class: Minsal\SimagdBundle\Admin\ImgPreinscripcionAdmin
         arguments: [~, Minsal\SimagdBundle\Entity\ImgPreinscripcion, MinsalSimagdBundle:ImgPreinscripcionAdmin]
         tags:
-            - {name: sonata.admin, manager_type: orm, group: admin, label: ImgPreinscripcion}
+            - {name: sonata.admin, manager_type: orm, group: imagenes, label: img_preinscripcion}

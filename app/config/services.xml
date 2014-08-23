@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <container xmlns="http://symfony.com/schema/dic/services"    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"    xsi:schemaLocation="http://symfony.com/schema/dic/services/services-1.0.xsd">
-  <services>
-    <service id="sonata.admin.departamento" class="Minsal\PruebaBundle\Admin\DepartamentoAdmin">
-        <tag name="sonata.admin" manager_type="orm" group="Catalogo" label="Departamento" icon=""/>
-        <argument />
-        <argument>Minsal\PruebaBundle\Entity\Departamento</argument>
-        <argument>SonataAdminBundle:CRUD</argument>
-    </service>
-  </services>
+  <service id="sonata.admin.img_preinscripcion" class="Minsal\SimagdBundle\Admin\ImgPreinscripcionAdmin">
+            <tag name="sonata.admin"
+                 manager_type="orm" 
+                 group="indicadores" 
+                 label="ficha_tecnica"
+            />
+            <argument />
+            <argument>Minsal\SimagdBundle\Entity\ImgPreinscripcion</argument>
+            <argument>SimagdBundle:ImgPreinscripcionAdmin</argument>
+            <call method="setMaxPerPage"><argument>%admin_max_per_page_number%</argument></call>
+        </service>
 </container>

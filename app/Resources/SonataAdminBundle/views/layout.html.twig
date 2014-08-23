@@ -73,7 +73,8 @@
                                                     {% set item_count = 0 %}
                                                     {% if display %}
                                                         {% for admin in group.items if item_count == 0 %}
-                                                            {% if admin.hasroute('list') and admin.isGranted('LIST') %}
+                                                            {% if admin.hasroute('list') and admin.isGranted('LIST') 
+                                                            or (admin.hasroute('buscar') and is_granted('ROLE_USER_PACS')) %}
                                                                 {% set item_count = item_count+1 %}
                                                             {% endif %}
                                                         {% endfor %}
@@ -83,6 +84,9 @@
                                                         {% set active = false %}
                                                         {% for admin in group.items %}
                                                             {% if admin.hasroute('list') and admin.isGranted('LIST') and app.request.get('_sonata_admin') == admin.code %}
+                                                                {% set active = true %}
+                                                            {% endif %}
+                                                                {% if admin.hasroute('buscar') and admin.isGranted('ROLE_USER_PACS') and app.request.get('_sonata_admin') == admin.code %}
                                                                 {% set active = true %}
                                                             {% endif %}
                                                         {% endfor %}
@@ -96,6 +100,9 @@
                                                                 {% for admin in group.items %}
                                                                     {% if admin.hasroute('list') and admin.isGranted('LIST') %}
                                                                         <li{# if app.request.get('_sonata_admin') == admin.code %} class="active"{% endif #}><a href="{{ admin.generateUrl('list')}}">{{ admin.label|trans({}, admin.translationdomain) }}</a></li>
+                                                                    {% endif %}
+                                                                    {% if admin.hasroute('buscar') and (is_granted('ROLE_SONATA_ADMIN') or is_granted('ROLE_USER_PACS')) %}
+                                                                        <li{# if app.request.get('_sonata_admin') == admin.code %} class="active"{% endif #}><a href="{{ admin.generateUrl('buscar')}}">{{ 'buscar paciente'|trans }}</a></li>
                                                                     {% endif %}
                                                                 {% endfor %}
                                                             </ul>

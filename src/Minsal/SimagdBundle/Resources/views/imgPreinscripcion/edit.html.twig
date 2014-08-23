@@ -1,0 +1,311 @@
+{# src/Minsal/SiapsBundle/Resource/view/MntPacienteAdmin/edit.html.twig 
+   Vista para la creación y actualización de un paciente 
+#}
+
+{% extends 'SonataAdminBundle::layout.html.twig' %}
+
+{% block stylesheets %}
+    {{parent()}}
+<link rel="stylesheet" href="{{ asset('bundles/minsalsiaps/css/MntPacienteAdmin/form-edit.css') }}" type="text/css" media="all" />  
+{% endblock %}
+
+{%block javascripts %}
+    {{parent()}}
+<script src="{{ asset('bundles/minsalsiaps/js/datepicker/jquery.ui.datepicker-es.js') }}" type="text/javascript"></script>
+<script src="{{ asset('bundles/minsalsiaps/js/maskedinput/jquery.maskedinput.js') }}" type="text/javascript"></script>
+<script src="{{ asset('bundles/minsalsiaps/js/MntPacienteAdmin/MntPaciente_edit.js') }}" type="text/javascript"></script>
+<script src="{{ asset('bundles/minsalsiaps/js/funciones_generales.js') }}" type="text/javascript"></script>
+{% endblock %}
+
+{%block title %}
+Preinscripción
+{%endblock%}
+
+
+{% block form %}
+    {{ sonata_block_render_event('sonata.admin.edit.form.top', { 'admin': admin, 'object': object }) }}
+
+    {% set url = admin.id(object) is not null ? 'edit' : 'create' %}
+
+    {% if not admin.hasRoute(url)%}
+<div>
+            {{ "form_not_available"|trans({}, "SonataAdminBundle") }}
+</div>
+    {% else %}
+
+<section class="content-header">
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="navbar-header">
+            <span class="navbar-brand">                Crear
+
+            </span>
+        </div>
+        <div class="container-fluid">
+            <div class="navbar-left">
+            </div>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown sonata-actions">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Acci&oacute;n<b class="caret"></b></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li>
+                        </li>
+                        <li>
+                        </li>
+                        <li>
+                        </li>
+                        <li>
+                            <a class="sonata-action-element" href="/app_dev.php/admin/minsal/simagd/ctlmodalidadimagenologia/list">
+                                <i class="fa fa-list"></i>
+                                Volver a la lista</a>
+                        </li>
+                        <li>
+                            <a class="sonata-action-element" href="/app_dev.php/admin/minsal/simagd/ctlmodalidadimagenologia/create">
+                                <i class="fa fa-plus-circle"></i>
+                                Agregar nuevo</a>
+                        </li>
+
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+</section>
+
+
+<form id="form_paciente"
+              {% if admin_pool.getOption('form_type') == 'horizontal' %}class="form-horizontal"{% endif %}
+      role="form"
+      action="{{ admin.generateUrl(url, {'id': admin.id(object), 'uniqid': admin.uniqid, 'subclass': app.request.get('subclass')}) }}" {{ form_enctype(form) }}
+      method="POST"
+              {% if not admin_pool.getOption('html5_validate') %}novalidate="novalidate"{% endif %}
+      >
+
+            {% if form.vars.errors|length > 0 %}
+    <div class="sonata-ba-form-error">
+                    {{ form_errors(form) }}
+    </div>
+            {% endif %}
+
+           {# {% if admin.hasroute('list') and admin.isGranted('LIST')%}
+    <a style="position:relative;float:right;margin-bottom:20px;" class="btn btn-info" href="{{ admin.generateUrl('list') }}">
+        <span class="glyphicon glyphicon-list"></span>
+                    {{ 'link_action_list'|trans({}, 'SonataAdminBundle') }}
+    </a>
+            {% endif %} #}
+    <div class="row">
+        &nbsp;
+    </div>
+
+            {% block sonata_pre_fieldsets %}
+    <div class="row">
+                {% endblock %}
+
+                {% block sonata_tab_content %}
+                    {% for name, form_group in admin.formgroups %}
+        
+  {# Comienza el codigo de la vista del formulario de imgPreinscripcion #}               
+ {########################################################################################################}  
+        
+        <div class="{{ form_group.class|default('col-md-12') }}">
+            <div class="box box-success">
+                <div class="box-header">
+                    <h4 class="box-title">
+                                        Paciente {#{{admin.trans(name, {}, form_group.translation_domain)}} #}
+                    </h4>
+                </div>
+  
+
+               
+                
+                <div class="row">
+                    
+                    <div class="col-md-1"></div>
+                    <div class="col-md-4">{{form_row(form[form_group.fields.id])}}</div>                  
+                    <div class="col-md-7"></div>
+                   
+                </div>     
+    
+                
+                 </div>
+        </div>
+ {########################################################################################################}
+        
+  {########################################################################################################}  
+        
+        <div class="{{ form_group.class|default('col-md-12') }}">
+            <div class="box box-success">
+                <div class="box-header">
+                    <h4 class="box-title">
+                                        Referir {#{{admin.trans(name, {}, form_group.translation_domain)}} #}
+                    </h4>
+                </div>
+                <div class="row">     
+                    <div class="col-md-1"></div>
+                    <div class="col-md-4">{{form_row(form[form_group.fields.referirPaciente])}}</div>                  
+                    <div class="col-md-7"></div> 
+                </div>  
+                <div class="row">     
+                    <div class="col-md-1"></div>
+                    <div class="col-md-4"><h4>Referido a:</h4></div>                  
+                    <div class="col-md-7"></div> 
+                </div> 
+                <div class="row">     
+                    <div class="col-md-1"></div>
+                    <div class="col-md-4">{{form_row(form[form_group.fields.justificacionReferencia])}}</div>                  
+                    <div class="col-md-7"></div> 
+                </div>
+    
+                
+                 </div>
+        </div>
+ {########################################################################################################} 
+        
+        
+ {########################################################################################################}  
+        
+        <div class="{{ form_group.class|default('col-md-12') }}">
+            <div class="box box-success">
+                <div class="box-header">
+                    <h4 class="box-title">
+                                        Preinscripción {#{{admin.trans(name, {}, form_group.translation_domain)}} #}
+                    </h4>
+                </div>
+                <div class="row">     
+                    <div class="col-md-1"></div>
+                    <div class="col-md-7">{{form_row(form[form_group.fields.consultaPor])}}</div>                  
+                    <div class="col-md-4"></div> 
+                </div>  
+                <div class="row">     
+                    <div class="col-md-1"></div>
+                    <div class="col-md-7">{{form_row(form[form_group.fields.datosClinicos])}}</div>                  
+                    <div class="col-md-4"></div> 
+                </div> 
+                <div class="row">     
+                    <div class="col-md-1"></div>
+                    <div class="col-md-7">{{form_row(form[form_group.fields.antecedentesClinicosRelevantes])}}</div>                  
+                    <div class="col-md-4"></div> 
+                </div>
+                <div class="row">     
+                    <div class="col-md-1"></div>
+                    <div class="col-md-7">{{form_row(form[form_group.fields.estadoClinico])}}</div>                  
+                    <div class="col-md-4"></div> 
+                </div>
+                <div class="row">     
+                    <div class="col-md-1"></div>
+                    <div class="col-md-7">{{form_row(form[form_group.fields.investigar])}}</div>                  
+                    <div class="col-md-4"></div> 
+                </div>
+                <div class="row">     
+                    <div class="col-md-1"></div>
+                    <div class="col-md-7">{{form_row(form[form_group.fields.hipotesisDiagnostica])}}</div>                  
+                    <div class="col-md-4"></div> 
+                </div>
+                
+                <div class="row">     
+                    <div class="col-md-1"></div>
+                    <div class="col-md-7">{{form_row(form[form_group.fields.justificacionMedicaPreinscripcion])}}</div>                  
+                    <div class="col-md-4"></div> 
+                </div>
+                
+                <div class="row">     
+                    <div class="col-md-1"></div>
+                    <div class="col-md-7">Procedencia /*Seleccione area de atencion*/</div>                  
+                    <div class="col-md-4"></div> 
+                </div>
+                
+                <div class="row">     
+                    <div class="col-md-2"></div>
+                    <div class="col-md-4">{{form_row(form[form_group.fields.pacienteAmbulatorio])}}</div>  
+                    <div class="col-md-4">{{form_row(form[form_group.fields.pacienteDesconocido])}}</div> 
+                    <div class="col-md-2"></div> 
+                </div>
+                
+                <div class="row">     
+                    <div class="col-md-2"></div>
+                    <div class="col-md-4">Registro</div>  
+                    <div class="col-md-4">{{form_row(form[form_group.fields.fechaProximaConsulta])}}</div> 
+                    <div class="col-md-2"></div> 
+                </div>
+                <div class="row">     
+                    <div class="col-md-2"></div>
+                    <div class="col-md-4">Modalidad</div>  
+                    <div class="col-md-4">{{form_row(form[form_group.fields.fechaProximaConsulta])}}</div> 
+                    <div class="col-md-2"></div> 
+                </div>
+                <div class="row">     
+                    <div class="col-md-2"></div>
+                    <div class="col-md-4">{{form_row(form[form_group.fields.necesitaCita])}}</div>  
+                    <div class="col-md-4">{{form_row(form[form_group.fields.requiereDiagnostico])}}</div> 
+                    <div class="col-md-2"></div> 
+                </div>
+                
+                <div class="row">     
+                    <div class="col-md-2"></div>
+                    <div class="col-md-4">Realizar Diagnostico en</div>  
+                    <div class="col-md-4"></div> 
+                    <div class="col-md-2"></div> 
+                </div>
+                
+                <div class="row">     
+                    <div class="col-md-2"></div>
+                    <div class="col-md-4">{{form_row(form[form_group.fields.justificacionDiagnostico])}}</div>  
+                    <div class="col-md-4"></div> 
+                    <div class="col-md-2"></div> 
+                </div>
+    
+                
+                 </div>
+        </div>
+ {########################################################################################################}       
+                
+                    
+           
+
+                    {% endfor %}
+                {% endblock %}
+
+                {% block sonata_post_fieldsets %}
+    </div>
+            {% endblock %}
+
+            {{ form_rest(form) }}
+
+            {% block formactions %}
+    <div class="well well-small form-actions">
+                    {% if app.request.isxmlhttprequest %}
+                        {% if admin.id(object) is not null %}
+        <button type="submit" class="btn btn-success" name="btn_update"><i class="fa fa-save"></i> {{ 'btn_update'|trans({}, 'SonataAdminBundle') }}</button>
+                        {% else %}
+        <button type="submit" class="btn btn-success" name="btn_create"><i class="fa fa-plus-circle"></i> {{ 'btn_create'|trans({}, 'SonataAdminBundle') }}</button>
+                        {% endif %}
+                    {% else %}
+                        {% if admin.supportsPreviewMode %}
+        <button class="btn btn-info persist-preview" name="btn_preview" type="submit">
+            <i class="fa fa-eye"></i>
+                                {{ 'btn_preview'|trans({}, 'SonataAdminBundle') }}
+        </button>
+                        {% endif %}
+                        {% if admin.id(object) is not null %}
+        <button type="submit" class="btn btn-success" name="btn_update_and_edit"><i class="fa fa-save"></i> {{ 'btn_update_and_edit_again'|trans({}, 'SonataAdminBundle') }}</button>
+
+
+                            {% if admin.isAclEnabled() and admin.hasroute('acl') and admin.isGranted('MASTER', object) %}
+        <a class="btn btn-info" href="{{ admin.generateObjectUrl('acl', object) }}"><i class="fa fa-users"></i> {{ 'link_edit_acl'|trans({}, 'SonataAdminBundle') }}</a>
+                            {% endif %}
+                        {% else %}
+                            {% if admin.hasroute('list') %}
+        <button type="submit" class="btn btn-success" name="btn_create_and_list"><i class="fa fa-save"></i> Guardar</button>
+                            {% endif %}
+                        {% endif %}
+                    {% endif %}
+    </div>
+            {% endblock formactions %}
+</form>
+    {% endif %}
+{% endblock %}
+
+
+
+

@@ -31,7 +31,7 @@ class CtlEstadoProcedimientoRealizadoAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->add('id')
+            ->addIdentifier('id')
             ->add('nombreEstado')
             ->add('_action', 'actions', array(
                 'actions' => array(
@@ -48,10 +48,16 @@ class CtlEstadoProcedimientoRealizadoAdmin extends Admin
      */
     protected function configureFormFields(FormMapper $formMapper)
     {
+        
+        
         $formMapper
             //->add('id')
+            /*->with(
+               'My Entity Name'
+            ) */
+           
             ->add('nombreEstado')
-        ;
+                ;
     }
 
     /**
@@ -69,7 +75,7 @@ class CtlEstadoProcedimientoRealizadoAdmin extends Admin
     {
         switch ($name) {
             case 'edit':
-                return 'MinsalSimagdBundle:Default:index.html.twig';
+                return 'MinsalSimagdBundle:Default:edit.html.twig';
                 break;
             default:
                 return parent::getTemplate($name);
@@ -102,4 +108,6 @@ class CtlEstadoProcedimientoRealizadoAdmin extends Admin
         $pais->setIdUsuarioMod($user);
         $pais->setFechaHoraMod(new \DateTime());
     }*/
+    
+    
 }
