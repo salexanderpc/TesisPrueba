@@ -19,6 +19,8 @@ class CtlPacsEstablecimientoAdmin extends Admin
             ->add('id')
             ->add('nombrePacs')
             ->add('urlPacs')
+                
+                
             ->add('usuarioPacs')
             ->add('passwordPacs')
             ->add('puertoPacs')
