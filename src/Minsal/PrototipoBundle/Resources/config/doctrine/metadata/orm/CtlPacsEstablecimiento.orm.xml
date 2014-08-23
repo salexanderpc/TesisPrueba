@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="CtlPacsEstablecimiento" table="ctl_pacs_establecimiento">
+    <indexes>
+      <index name="IDX_3DFC3DD97DFA12F6" columns="id_establecimiento"/>
+    </indexes>
+    <id name="id" type="integer" column="id">
+      <generator strategy="SEQUENCE"/>
+    </id>
+    <field name="nombrePacs" type="string" column="nombre_pacs" nullable="true"/>
+    <field name="urlPacs" type="string" column="url_pacs" nullable="false"/>
+    <field name="usuarioPacs" type="string" column="usuario_pacs" nullable="false"/>
+    <field name="passwordPacs" type="string" column="password_pacs" nullable="false"/>
+    <field name="puertoPacs" type="integer" column="puerto_pacs" nullable="false"/>
+    <field name="hostPacs" type="string" column="host_pacs" nullable="false"/>
+    <field name="duracionEstudioPacs" type="smallint" column="duracion_estudio_pacs" nullable="true"/>
+    <many-to-one field="idEstablecimiento" target-entity="CtlEstablecimiento">
+      <join-columns>
+        <join-column name="id_establecimiento" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

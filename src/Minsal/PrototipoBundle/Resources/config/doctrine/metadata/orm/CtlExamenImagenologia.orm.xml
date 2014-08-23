@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="CtlExamenImagenologia" table="ctl_examen_imagenologia">
+    <indexes>
+      <index name="IDX_7035C847C02E5491" columns="id_modalidad_imagenologia"/>
+    </indexes>
+    <id name="id" type="integer" column="id">
+      <generator strategy="SEQUENCE"/>
+    </id>
+    <field name="nombreExamen" type="string" column="nombre_examen" nullable="false"/>
+    <field name="codigoExamen" type="string" column="codigo_examen" nullable="true"/>
+    <field name="examenHabilitado" type="boolean" column="examen_habilitado" nullable="true"/>
+    <field name="descripcionExamen" type="string" column="descripcion_examen" length="100" nullable="true"/>
+    <field name="observacionesExamen" type="string" column="observaciones_examen" length="50" nullable="true"/>
+    <many-to-one field="idModalidadImagenologia" target-entity="CtlModalidadImagenologia">
+      <join-columns>
+        <join-column name="id_modalidad_imagenologia" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

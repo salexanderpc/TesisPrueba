@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="CtlModalidadImagenologiaEstablecimientoCitacion" table="ctl_modalidad_imagenologia_establecimiento_citacion">
+    <indexes>
+      <index name="IDX_DDB7E0E3E2306CDC" columns="id_modalidad_imagenologia_establecimiento"/>
+    </indexes>
+    <id name="id" type="integer" column="id">
+      <generator strategy="SEQUENCE"/>
+    </id>
+    <field name="maximoCitasDia" type="smallint" column="maximo_citas_dia" nullable="true"/>
+    <field name="maximoCitasTurno" type="smallint" column="maximo_citas_turno" nullable="true"/>
+    <field name="maximoCitasHora" type="smallint" column="maximo_citas_hora" nullable="true"/>
+    <field name="maximoCitasMedico" type="smallint" column="maximo_citas_medico" nullable="true"/>
+    <many-to-one field="idModalidadImagenologiaEstablecimiento" target-entity="CtlModalidadImagenologiaEstablecimiento">
+      <join-columns>
+        <join-column name="id_modalidad_imagenologia_establecimiento" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>
