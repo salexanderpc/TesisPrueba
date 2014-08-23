@@ -19,8 +19,6 @@ class CtlPacsEstablecimientoAdmin extends Admin
             ->add('id')
             ->add('nombrePacs')
             ->add('urlPacs')
-                
-                
             ->add('usuarioPacs')
             ->add('passwordPacs')
             ->add('puertoPacs')
@@ -66,12 +64,12 @@ class CtlPacsEstablecimientoAdmin extends Admin
                     'query_builder' => function($repositorio) {
                 return $repositorio->obtenerEstablecimiento();
             }))    
-            ->add('urlPacs')
-            ->add('usuarioPacs')
-            ->add('passwordPacs')
-            ->add('puertoPacs')
-            ->add('hostPacs')
-            ->add('duracionEstudioPacs')
+            ->add('urlPacs',null,array('label'=>'URL del Servidor PACS'))
+            ->add('usuarioPacs',null,array('label'=>'Usuario de BD del PACS'))
+            ->add('passwordPacs',null,array('label'=>'Password de Usuario de BD'))
+            ->add('puertoPacs',null,array('label'=>'Puerto de BD'))
+            ->add('hostPacs',null,array('label'=>'host del Servidor'))
+            ->add('duracionEstudioPacs',null,array('label'=>'Duración en meses del estudio'))
         ;
     }
 
