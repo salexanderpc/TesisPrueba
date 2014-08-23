@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="ImgPreinscripcionExploracion" table="img_preinscripcion_exploracion">
+    <indexes>
+      <index name="IDX_996E2B6494328D4F" columns="id_preinscripcion"/>
+      <index name="IDX_996E2B64C313222C" columns="id_exploracion_imagenologia"/>
+    </indexes>
+    <unique-constraints>
+      <unique-constraint name="idx_preinscripcion_exploracion" columns="id_preinscripcion,id_exploracion_imagenologia"/>
+    </unique-constraints>
+    <id name="id" type="integer" column="id">
+      <generator strategy="SEQUENCE"/>
+    </id>
+    <field name="vistasRequeridas" type="smallint" column="vistas_requeridas" nullable="true"/>
+    <field name="posicionExaminar" type="string" column="posicion_examinar" length="25" nullable="true"/>
+    <field name="dimensiones" type="string" column="dimensiones" length="15" nullable="true"/>
+    <field name="otrasEspecificaciones" type="string" column="otras_especificaciones" length="50" nullable="true"/>
+    <many-to-one field="idExploracionImagenologia" target-entity="CtlExploracionImagenologia">
+      <join-columns>
+        <join-column name="id_exploracion_imagenologia" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idPreinscripcion" target-entity="ImgPreinscripcion">
+      <join-columns>
+        <join-column name="id_preinscripcion" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

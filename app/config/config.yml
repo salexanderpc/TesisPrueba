@@ -1,7 +1,7 @@
 imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
-    #- { resource: services.xml }
+    - { resource: services.xml }
     - { resource: sonata_core.yml }
     - { resource: bundles/ivory_ckeditor.yml }
     - { resource: bundles/sonata_block.yml }

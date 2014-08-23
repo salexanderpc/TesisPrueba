@@ -1,0 +1,6 @@
+services:
+    minsal_prototipo.admin.ctl_pacs_establecimiento:
+        class: Minsal\PrototipoBundle\Admin\CtlPacsEstablecimientoAdmin
+        arguments: [~, Minsal\PrototipoBundle\Entity\CtlPacsEstablecimiento, MinsalPrototipoBundle:CtlPacsEstablecimientoAdmin]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: admin, label: CtlPacsEstablecimiento}
